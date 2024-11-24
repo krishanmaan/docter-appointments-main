@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com'; // Import EmailJS library
 
 const Appointments: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,9 +17,35 @@ const Appointments: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Appointment Booked:', formData);
+
+    // Your EmailJS credentials
+    const userID = 'X5Yc_2-v3L4V2N4an';  // Replace with your EmailJS user ID
+    const serviceID = 'service_p2u1m8l';  // Replace with your EmailJS service ID
+    const templateID = 'template_ats4dbs';  // Replace with your EmailJS template ID
+
+    try {
+      // Sending the form data to EmailJS
+      const result = await emailjs.send(
+        serviceID,
+        templateID,
+        formData, // Form data to send as the template's parameters
+        userID // EmailJS user ID
+      );
+
+      console.log('Email sent successfully:', result.text);
+      alert('Appointment successfully booked!');
+      setFormData({
+        name: '',
+        doctor: '',
+        date: '',
+        time: '',
+      }); // Clear the form after submission
+    } catch (error) {
+      console.error('Email sending error:', error);
+      alert('There was an error booking the appointment.');
+    }
   };
 
   return (
