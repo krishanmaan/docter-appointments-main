@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
     <nav className="fixed top-0 left-0 w-full bg-[#ebeef1] p-4 md:px-24 neumorphism-container">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="text-2xl font-bold text-gray-700">Ravi Jangir</div>
+        <div className="text-2xl font-bold text-gray-700">Dr Appointment</div>
 
         {/* Hamburger Button for Small Screens */}
         <div className="md:hidden">
